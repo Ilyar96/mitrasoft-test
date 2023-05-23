@@ -4,8 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import { MainLayout } from "../../layouts";
 import { Home } from "../../pages";
 
-import styles from "./App.module.scss";
-
 export const App = () => {
 	return (
 		<Routes>
