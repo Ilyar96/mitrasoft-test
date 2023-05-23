@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PostsData } from "./types";
 import { FetchingStatus } from "../../../types/common";
 import { Post } from "../../../types/post";
@@ -29,6 +29,9 @@ export const postsSlice = createSlice({
 	},
 });
 
-export const { setPosts } = postsSlice.actions;
+export const GET_POSTS_ACTION_TYPE = `${postsSlice.name}/getPosts`;
+export const getPosts = createAction(GET_POSTS_ACTION_TYPE);
+
+export const { setPosts, setError, setPage, setStatus } = postsSlice.actions;
 
 export default postsSlice;

@@ -1,18 +1,26 @@
 import { FC, useEffect } from "react";
 
 import styles from "./Home.module.scss";
-import postService from "../../services/post.service";
-import userService from "../../services/user.service";
 import { useActions } from "../../hooks";
+import { useAppSelector } from "../../redux/store";
+import { selectPostsPage } from "../../redux/slices/posts/selectors";
 
 interface HomeProps {}
 
 export const Home: FC<HomeProps> = () => {
-	const { setPosts } = useActions();
-	useEffect(() => {
-		postService.get({ _limit: 10, _page: 1 }).then(setPosts);
-		userService.getById(1).then(console.log);
-	}, []);
+	const { getPosts, setPage } = useActions();
+	const page = useAppSelector(selectPostsPage);
 
-	return <div className={styles.Home}>Home Component</div>;
+	useEffect(() => {
+		getPosts();
+	}, [page]);
+
+	const clickMoreHandler = () => setPage(page + 1);
+
+	return (
+		<div className={styles.Home}>
+			Home Component
+			<button onClick={clickMoreHandler}>Test</button>
+		</div>
+	);
 };

@@ -1,1 +1,7 @@
-export { setPosts } from "./slices/posts/slice";
+export {
+	setPosts,
+	getPosts,
+	setError,
+	setPage,
+	setStatus,
+} from "./slices/posts/slice";
