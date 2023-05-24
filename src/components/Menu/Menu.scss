@@ -1,0 +1,92 @@
+.collapse:not(.show) {
+	display: flex;
+}
+.navbar-expand .navbar-toggler {
+	display: block;
+}
+
+.menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	transform: translate(-100%, 0);
+	z-index: 6;
+
+	width: 18.75rem;
+	max-width: 100%;
+	height: 100vh;
+
+	transition: transform 0.3s ease;
+
+	&.open {
+		transform: translateZ(0);
+	}
+}
+
+.header .menu-btn {
+	padding: 10px;
+}
+
+.menu-icon {
+	position: relative;
+
+	display: block;
+	width: 26px;
+	height: 14px;
+	padding: 10px;
+
+	cursor: pointer;
+	span,
+	&::before,
+	&::after {
+		content: "";
+		transition: all 0.3s ease 0s;
+		left: 0px;
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		background-color: #fff;
+	}
+	&::before {
+		top: 0px;
+	}
+	&::after {
+		bottom: 0px;
+	}
+	span {
+		top: calc(50% - 1px);
+	}
+	.open & {
+		span {
+			transform: scale(0);
+		}
+		&::before {
+			transform: rotate(-45deg);
+			top: calc(50% - 1px);
+		}
+		&::after {
+			transform: rotate(45deg);
+			bottom: calc(50% - 1px);
+		}
+	}
+}
+
+.overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 5;
+
+	width: 100vw;
+	height: 100vh;
+	background: rgba($color: #000, $alpha: 0.7);
+
+	opacity: 0;
+	visibility: hidden;
+
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+
+	&.open {
+		opacity: 1;
+		visibility: visible;
+	}
+}

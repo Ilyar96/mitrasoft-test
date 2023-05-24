@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import styles from "./TemplateName.module.scss";
+import "./TemplateName.scss";
 
 interface TemplateNameProps {}
 

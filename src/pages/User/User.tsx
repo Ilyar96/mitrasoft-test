@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { useActions } from "../../hooks";
 
-import styles from "./User.module.scss";
+import "./User.scss";
 
 export const User: FC = () => {
 	const { id } = useParams();

@@ -1,9 +1,10 @@
 import { FC, useEffect } from "react";
 
-import styles from "./Home.module.scss";
 import { useActions } from "../../hooks";
 import { useAppSelector } from "../../redux/store";
 import { selectPostsPage } from "../../redux/slices/posts/selectors";
+
+import "./Home.scss";
 
 export const Home: FC = () => {
 	const { getPosts, setPage } = useActions();
@@ -16,7 +17,7 @@ export const Home: FC = () => {
 	const clickMoreHandler = () => setPage(page + 1);
 
 	return (
-		<div className={styles.Home}>
+		<div>
 			Home Component
 			<button onClick={clickMoreHandler}>Test</button>
 		</div>

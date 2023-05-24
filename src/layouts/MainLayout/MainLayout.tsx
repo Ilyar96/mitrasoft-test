@@ -1,14 +1,15 @@
 import { FC } from "react";
 import { Outlet } from "react-router-dom";
 
-import styles from "./MainLayout.module.scss";
 import { Footer, Header } from "../../components";
+
+import "./MainLayout.scss";
 
 export const MainLayout: FC = () => {
 	return (
-		<div className={styles.wrapper}>
+		<div className="wrapper">
 			<Header />
-			<main className={styles.main}>
+			<main className="main">
 				<Outlet />
 			</main>
 			<Footer />
