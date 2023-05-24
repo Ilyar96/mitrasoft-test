@@ -1,9 +1,8 @@
 import { FetchingStatus } from "../../../types/common";
-import { Post } from "../../../types/post";
+import { User } from "../../../types/user";
 
-export interface PostsData {
+export interface UserData {
 	status: FetchingStatus;
 	error: string | null;
-	entities: Post[];
-	page: number;
+	data: User | null;
 }

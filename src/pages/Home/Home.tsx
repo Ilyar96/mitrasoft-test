@@ -5,9 +5,7 @@ import { useActions } from "../../hooks";
 import { useAppSelector } from "../../redux/store";
 import { selectPostsPage } from "../../redux/slices/posts/selectors";
 
-interface HomeProps {}
-
-export const Home: FC<HomeProps> = () => {
+export const Home: FC = () => {
 	const { getPosts, setPage } = useActions();
 	const page = useAppSelector(selectPostsPage);
 

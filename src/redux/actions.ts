@@ -1,7 +1,13 @@
 export {
 	setPosts,
 	getPosts,
-	setError,
+	setPostsError,
 	setPage,
-	setStatus,
+	setPostsStatus,
 } from "./slices/posts/slice";
+export {
+	getUser,
+	setUserError,
+	setUser,
+	setUserStatus,
+} from "./slices/user/slice";

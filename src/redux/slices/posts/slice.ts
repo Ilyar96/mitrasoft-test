@@ -17,10 +17,10 @@ export const postsSlice = createSlice({
 		setPosts(state, action: PayloadAction<Post[]>) {
 			state.entities.push(...action.payload);
 		},
-		setStatus(state, action: PayloadAction<FetchingStatus>) {
+		setPostsStatus(state, action: PayloadAction<FetchingStatus>) {
 			state.status = action.payload;
 		},
-		setError(state, action: PayloadAction<string | null>) {
+		setPostsError(state, action: PayloadAction<string | null>) {
 			state.error = action.payload;
 		},
 		setPage(state, action: PayloadAction<number>) {
@@ -32,6 +32,7 @@ export const postsSlice = createSlice({
 export const GET_POSTS_ACTION_TYPE = `${postsSlice.name}/getPosts`;
 export const getPosts = createAction(GET_POSTS_ACTION_TYPE);
 
-export const { setPosts, setError, setPage, setStatus } = postsSlice.actions;
+export const { setPosts, setPostsError, setPage, setPostsStatus } =
+	postsSlice.actions;
 
 export default postsSlice;
