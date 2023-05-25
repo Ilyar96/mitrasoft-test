@@ -7,7 +7,7 @@ import {
 	selectPostsPage,
 } from "../../redux/slices/posts/selectors";
 import { useActions } from "../../hooks";
-import { postsPerPage } from "../../constants";
+import { postsPerPage } from "../../constants/constants";
 
 import "./Pagination.scss";
 

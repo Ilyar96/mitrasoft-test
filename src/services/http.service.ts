@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-import { BACKEND_URL, REQUEST_TIMEOUT } from "../constants";
+import { BACKEND_URL, REQUEST_TIMEOUT } from "../constants/constants";
 
 const http: AxiosInstance = axios.create({
 	baseURL: BACKEND_URL,

@@ -19,7 +19,7 @@ import {
 } from "../slices/posts/selectors";
 import { Order, SortBy } from "../slices/posts/types";
 import { filterPosts, sortPosts } from "../../utils";
-import { postsPerPage } from "../../constants";
+import { postsPerPage } from "../../constants/constants";
 
 function* onLoadPosts() {
 	try {

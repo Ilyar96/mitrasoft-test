@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 
 import { useActions } from "../../hooks";
@@ -9,7 +9,8 @@ export const Search: FC = () => {
 	const [searchValue, setSearchValue] = useState("");
 	const { setSearch } = useActions();
 
-	const onSubmit = () => {
+	const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 		setSearch(searchValue);
 	};
 
@@ -34,15 +35,17 @@ export const Search: FC = () => {
 					aria-describedby="search-post"
 				/>
 
-				<Button
-					className="search-clear"
-					variant="link"
-					type="button"
-					onClick={onClear}
-				>
-					<span className="visually-hidden">Очистить поле поиска</span>
-					&#10006;
-				</Button>
+				{searchValue && (
+					<Button
+						className="search-clear"
+						variant="link"
+						type="button"
+						onClick={onClear}
+					>
+						<span className="visually-hidden">Очистить поле поиска</span>
+						&#10006;
+					</Button>
+				)}
 
 				<Button variant="primary" type="submit">
 					Поиск
