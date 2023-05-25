@@ -17,5 +17,5 @@ export const PostList: FC = () => {
 		return <p>Ничего не найдено</p>;
 	}
 
-	return <div>{postList}</div>;
+	return <div className="posts">{postList}</div>;
 };

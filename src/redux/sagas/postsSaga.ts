@@ -70,7 +70,6 @@ function* onFilterPosts() {
 
 function* onPaginatePosts() {
 	const filteredPostList: Post[] = yield select(selectFilteredPosts);
-	console.log("filteredPostList: ", filteredPostList);
 	const page: number = yield select(selectPostsPage);
 
 	const paginatedPosts = filteredPostList.slice(

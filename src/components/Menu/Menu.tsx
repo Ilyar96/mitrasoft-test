@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent, useRef, useState } from "react";
+import { FC, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { Button } from "react-bootstrap";
 import cn from "classnames";
 
@@ -23,7 +23,7 @@ export const Menu: FC = () => {
 	const firstMenuItem = useRef<HTMLAnchorElement>(null);
 
 	const toggleOpen = (value?: boolean) => () => {
-		if (value) {
+		if (value !== undefined) {
 			setIsOpen(value);
 		} else {
 			setIsOpen((prev) => !prev);
@@ -37,6 +37,20 @@ export const Menu: FC = () => {
 			}, 0);
 		}
 	};
+
+	const cb = (e: globalThis.KeyboardEvent) => {
+		if (e.code === "Escape") {
+			setIsOpen(false);
+		}
+	};
+
+	useEffect(() => {
+		document.addEventListener("keydown", cb);
+
+		return () => {
+			document.removeEventListener("keydown", cb);
+		};
+	}, []);
 
 	const menuItems = menuList.map(({ title, href }, index) => (
 		<Link

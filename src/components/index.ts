@@ -11,3 +11,5 @@ export * from "./PostFilters/PostFilters";
 export * from "./Sort/Sort";
 export * from "./Search/Search";
 export * from "./Pagination/Pagination";
+export * from "./CommentList/CommentList";
+export * from "./CommentItem/CommentItem";

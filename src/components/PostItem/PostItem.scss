@@ -1,9 +1,10 @@
 .post-item {
-	display: grid;
-	grid-template-columns: 3.125rem 1fr;
-	grid-template-areas: "avatar title" "avatar body";
-	gap: 0 0.625rem;
-
+	.post-content {
+		display: grid;
+		grid-template-columns: 3.125rem 1fr;
+		grid-template-areas: "avatar title" "avatar body";
+		gap: 0 0.625rem;
+	}
 	.post-avatar-link {
 		grid-area: avatar;
 		transform: translate(0, 0.625rem);
@@ -18,5 +19,8 @@
 	}
 	.post-body {
 		grid-area: body;
+	}
+	.post-btn {
+		margin-left: 3.75rem;
 	}
 }

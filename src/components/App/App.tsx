@@ -12,7 +12,7 @@ export const App = () => {
 				<Route index element={<Home />} />
 				<Route path={`${AppRoutes.USERS}/:id`} element={<User />} />
 
-				<Route path="*" element={<h1>Not found</h1>} />
+				<Route path="*" element={<Home />} />
 			</Route>
 		</Routes>
 	);
