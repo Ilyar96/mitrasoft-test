@@ -1,27 +1,29 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import cn from "classnames";
 
 import { Post } from "../../types/post";
 
 import "./PostItem.scss";
+import { Id } from "../../types/common";
 
 interface PostItemProps {
-	post: Post;
+	body: string;
+	title: string;
+	userId: Id;
+	id: Id;
 	as?: "li" | "div" | "article";
 	className?: string;
 }
 
-export const PostItem: FC<PostItemProps> = ({
-	post,
-	as: Component = "article",
-	className,
-}) => {
-	const { body, title, userId } = post;
+export const PostItem: FC<PostItemProps> = memo(
+	({ body, title, userId, id, as: Component = "article", className }) => {
+		console.log("title: ", title, "render");
 
-	return (
-		<Component className={cn(className, "post-item")}>
-			<h3>{title}</h3>
-			<p>{body}</p>
-		</Component>
-	);
-};
+		return (
+			<Component className={cn(className, "post-item")}>
+				<h3>{title}</h3>
+				<p>{body}</p>
+			</Component>
+		);
+	}
+);

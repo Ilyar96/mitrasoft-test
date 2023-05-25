@@ -10,3 +10,4 @@ export * from "./PostItem/PostItem";
 export * from "./PostFilters/PostFilters";
 export * from "./Sort/Sort";
 export * from "./Search/Search";
+export * from "./Pagination/Pagination";

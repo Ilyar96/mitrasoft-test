@@ -9,7 +9,7 @@ import {
 	selectPostsSortBy,
 	selectPostsSortOrder,
 } from "../../redux/slices/posts/selectors";
-import { PostFilters, PostList } from "../../components";
+import { Pagination, PostFilters, PostList } from "../../components";
 
 import "./Home.scss";
 
@@ -27,8 +27,9 @@ export const Home: FC = () => {
 	return (
 		<Container>
 			<PostFilters />
-			<h1 className="h2">Список постов:</h1>
+			<h1 className="h2 mb-4">Список постов:</h1>
 			<PostList />
+			<Pagination className="mt-5" />
 		</Container>
 	);
 };

@@ -19,7 +19,7 @@ const sortItems: SortItem[] = [
 ];
 
 export const Sort: FC = () => {
-	const { setSort } = useActions();
+	const { setSort, setPage } = useActions();
 	const sortBy = useAppSelector(selectPostsSortBy);
 	const sortOrder = useAppSelector(selectPostsSortOrder);
 
@@ -30,6 +30,7 @@ export const Sort: FC = () => {
 
 	const sortChangeHandler = (sortBy: SortBy, order: Order) => () => {
 		setSort({ order, sortBy });
+		setPage(1);
 	};
 
 	return (

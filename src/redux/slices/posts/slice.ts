@@ -6,6 +6,7 @@ import { Post } from "../../../types/post";
 
 const initialState: PostsData = {
 	entities: [],
+	paginatedEntities: [],
 	error: null,
 	page: 1,
 	status: FetchingStatus.IDLE,
@@ -20,6 +21,9 @@ export const postsSlice = createSlice({
 	reducers: {
 		setPosts(state, action: PayloadAction<Post[]>) {
 			state.entities = action.payload;
+		},
+		setPaginatedPosts(state, action: PayloadAction<Post[]>) {
+			state.paginatedEntities = action.payload;
 		},
 		setPostsStatus(state, action: PayloadAction<FetchingStatus>) {
 			state.status = action.payload;
@@ -51,6 +55,7 @@ export const {
 	setPostsStatus,
 	setSort,
 	setSearch,
+	setPaginatedPosts,
 } = postsSlice.actions;
 
 export default postsSlice;

@@ -1,17 +1,19 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import { useAppSelector } from "../../redux/store";
-import { selectPosts } from "../../redux/slices/posts/selectors";
+import { selectPaginatedPosts } from "../../redux/slices/posts/selectors";
 import { PostItem } from "../";
 
 import "./PostList.scss";
 
 export const PostList: FC = () => {
-	const posts = useAppSelector(selectPosts);
+	const paginatedPosts = useAppSelector(selectPaginatedPosts);
 
-	const postList = posts.map((post) => <PostItem key={post.id} post={post} />);
+	const postList = paginatedPosts.map((post) => (
+		<PostItem key={post.id} {...post} />
+	));
 
-	if (posts.length === 0) {
+	if (paginatedPosts.length === 0) {
 		return <p>Ничего не найдено</p>;
 	}
 

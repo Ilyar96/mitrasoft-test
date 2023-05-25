@@ -11,7 +11,7 @@ export const Footer: FC<FooterProps> = () => {
 	const currentYear = new Date().getFullYear();
 
 	return (
-		<footer className="p-4 bg-dark text-white header">
+		<footer className="p-4 bg-dark text-white footer">
 			<Container className="d-flex justify-content-center">
 				<div>© {currentYear}</div>
 			</Container>
