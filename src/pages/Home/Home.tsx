@@ -14,11 +14,15 @@ import { Pagination, PostFilters, PostList } from "../../components";
 import "./Home.scss";
 
 export const Home: FC = () => {
-	const { getPosts, setPage } = useActions();
+	const { getComments, getPosts, setPage } = useActions();
 	const page = useAppSelector(selectPostsPage);
 	const sortBy = useAppSelector(selectPostsSortBy);
 	const order = useAppSelector(selectPostsSortOrder);
 	const search = useAppSelector(selectPostsSearch);
+
+	useEffect(() => {
+		getComments();
+	}, []);
 
 	useEffect(() => {
 		getPosts();
