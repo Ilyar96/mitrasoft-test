@@ -22,11 +22,12 @@ export const Home: FC = () => {
 
 	useEffect(() => {
 		getComments();
+		getPosts();
 	}, []);
 
-	useEffect(() => {
-		getPosts();
-	}, [page, sortBy, order, search]);
+	// useEffect(() => {
+	// 	getPosts();
+	// }, [page, sortBy, order, search]);
 
 	return (
 		<Container>

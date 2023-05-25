@@ -7,6 +7,7 @@ export {
 	setSort,
 	setSearch,
 	setPaginatedPosts,
+	setFilteredPosts,
 } from "./slices/posts/slice";
 export {
 	getUser,

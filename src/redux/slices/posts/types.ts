@@ -17,6 +17,7 @@ export interface PostsData {
 	status: FetchingStatus;
 	error: string | null;
 	entities: Post[];
+	filteredEntities: Post[];
 	paginatedEntities: Post[];
 	page: number;
 	sortBy: SortBy;

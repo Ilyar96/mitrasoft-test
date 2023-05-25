@@ -3,6 +3,7 @@ import { PaginationControl } from "react-bootstrap-pagination-control";
 
 import { useAppSelector } from "../../redux/store";
 import {
+	selectFilteredPosts,
 	selectPosts,
 	selectPostsPage,
 } from "../../redux/slices/posts/selectors";
@@ -17,7 +18,7 @@ export interface PaginationProps {
 
 export const Pagination: FC<PaginationProps> = ({ className }) => {
 	const page = useAppSelector(selectPostsPage);
-	const posts = useAppSelector(selectPosts);
+	const posts = useAppSelector(selectFilteredPosts);
 	const { setPage } = useActions();
 
 	return (

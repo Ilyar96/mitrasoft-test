@@ -1,6 +1,8 @@
 import { RootState } from "../../store";
 
 export const selectPosts = (state: RootState) => state.posts.entities;
+export const selectFilteredPosts = (state: RootState) =>
+	state.posts.filteredEntities;
 export const selectPaginatedPosts = (state: RootState) =>
 	state.posts.paginatedEntities;
 export const selectPostsStatus = (state: RootState) => state.posts.status;
