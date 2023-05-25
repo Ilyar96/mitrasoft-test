@@ -14,3 +14,9 @@ export {
 	setUser,
 	setUserStatus,
 } from "./slices/user/slice";
+export {
+	getComments,
+	setComments,
+	setCommentsError,
+	setCommentsStatus,
+} from "./slices/comments/slice";

@@ -5,6 +5,7 @@ import createSagaMiddleware from "redux-saga";
 import postsSlice from "./slices/posts/slice";
 import rootSaga from "./sagas/rootSaga";
 import userSlice from "./slices/user/slice";
+import commentsSlice from "./slices/comments/slice";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -12,6 +13,7 @@ export const store = configureStore({
 	reducer: {
 		[postsSlice.name]: postsSlice.reducer,
 		[userSlice.name]: userSlice.reducer,
+		[commentsSlice.name]: commentsSlice.reducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().concat(sagaMiddleware),
