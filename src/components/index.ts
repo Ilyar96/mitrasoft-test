@@ -14,3 +14,4 @@ export * from "./Pagination/Pagination";
 export * from "./CommentList/CommentList";
 export * from "./CommentItem/CommentItem";
 export * from "./Loader/Loader";
+export * from "./UserCard/UserCard";

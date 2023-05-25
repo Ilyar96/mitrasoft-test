@@ -5,12 +5,14 @@ import { FetchingStatus, Id } from "../../types/common";
 import { getUser, setUser, setUserError, setUserStatus } from "../actions";
 import userService from "../../services/user.service";
 import { User } from "../../types/user";
+import { delay } from "../../utils";
 
 function* onLoadUser({ payload }: PayloadAction<Id>) {
 	try {
 		yield put(setUserStatus(FetchingStatus.PENDING));
 		yield put(setUserError(null));
 
+		yield delay(1);
 		const user: User = yield call(userService.getById, payload);
 
 		yield put(setUserStatus(FetchingStatus.SUCCESS));
