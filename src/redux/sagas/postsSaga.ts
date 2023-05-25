@@ -20,7 +20,7 @@ import {
 	selectPostsSortOrder,
 } from "../slices/posts/selectors";
 import { Order, SortBy } from "../slices/posts/types";
-import { filterPosts, sortPosts } from "../../utils";
+import { delay, filterPosts, sortPosts } from "../../utils";
 import { postsPerPage } from "../../constants/constants";
 import {
 	setSearch,
@@ -39,6 +39,7 @@ function* onLoadPosts() {
 		yield put(setPostsStatus(FetchingStatus.PENDING));
 		yield put(setPostsError(null));
 
+		yield delay(1);
 		const posts: Post[] = yield call(postService.get);
 
 		yield put(setPostsStatus(FetchingStatus.SUCCESS));

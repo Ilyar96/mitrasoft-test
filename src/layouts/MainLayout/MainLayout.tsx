@@ -9,7 +9,7 @@ export const MainLayout: FC = () => {
 	return (
 		<div className="wrapper">
 			<Header />
-			<main className="main">
+			<main className="main d-flex flex-column">
 				<Outlet />
 			</main>
 			<Footer />
