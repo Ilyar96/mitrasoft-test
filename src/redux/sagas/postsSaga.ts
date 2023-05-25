@@ -1,27 +1,38 @@
 import { put, call, takeLeading, all, fork, select } from "redux-saga/effects";
+import { PayloadAction } from "@reduxjs/toolkit";
 
 import {
-	GET_POSTS_ACTION_TYPE,
 	setPostsError,
 	setPosts,
 	setPostsStatus,
+	getPosts,
 } from "../slices/posts/slice";
 import { FetchingStatus } from "../../types/common";
 import postService from "../../services/post.service";
 import { Post } from "../../types/post";
-import { selectPostsPage } from "../slices/posts/selectors";
+import {
+	selectPostsSearch,
+	selectPostsSortBy,
+	selectPostsSortOrder,
+} from "../slices/posts/selectors";
+import { Order, SortBy } from "../slices/posts/types";
+import { filterPosts, sortPosts } from "../../utils";
 
 function* onLoadPosts() {
 	try {
-		const page: number = yield select(selectPostsPage);
-
+		const sortOrder: Order = yield select(selectPostsSortOrder);
+		const sortBy: SortBy = yield select(selectPostsSortBy);
+		const search: string = yield select(selectPostsSearch);
 		yield put(setPostsStatus(FetchingStatus.PENDING));
 		yield put(setPostsError(null));
 
-		const posts: Post[] = yield call(postService.get, { _page: page });
+		const posts: Post[] = yield call(postService.get);
+		const filteredPostList = posts.filter((post) => filterPosts(post, search));
+
+		filteredPostList.sort((a, b) => sortPosts(sortBy, sortOrder, a, b));
 
 		yield put(setPostsStatus(FetchingStatus.SUCCESS));
-		yield put(setPosts(posts));
+		yield put(setPosts(filteredPostList));
 	} catch (error) {
 		console.error(error);
 
@@ -33,7 +44,7 @@ function* onLoadPosts() {
 }
 
 function* watchOnLoadPosts() {
-	yield takeLeading(GET_POSTS_ACTION_TYPE, onLoadPosts);
+	yield takeLeading(getPosts, onLoadPosts);
 }
 
 export default function* postsSaga() {

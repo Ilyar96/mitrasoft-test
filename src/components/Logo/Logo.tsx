@@ -8,7 +8,6 @@ export const Logo: FC = () => {
 	const { pathname } = useLocation();
 
 	const isHomePage = pathname === AppRoutes.HOME;
-	console.log("isHomePage: ", isHomePage);
 	const logoClassName = "logo";
 
 	if (!isHomePage) {

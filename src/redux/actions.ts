@@ -4,6 +4,8 @@ export {
 	setPostsError,
 	setPage,
 	setPostsStatus,
+	setSort,
+	setSearch,
 } from "./slices/posts/slice";
 export {
 	getUser,

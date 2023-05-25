@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, KeyboardEvent, useRef, useState } from "react";
 import { Button } from "react-bootstrap";
 import cn from "classnames";
 
@@ -20,6 +20,7 @@ export const Menu: FC = () => {
 	});
 	const btnClassName = cn("menu-btn text-white", { open: isOpen });
 	const overlayClassName = cn("overlay", { open: isOpen });
+	const firstMenuItem = useRef<HTMLAnchorElement>(null);
 
 	const toggleOpen = (value?: boolean) => () => {
 		if (value) {
@@ -29,27 +30,49 @@ export const Menu: FC = () => {
 		}
 	};
 
-	const menuItems = menuList.map(({ title, href }) => (
-		<Link className="nav-link mb-1" to={href} key={href}>
+	const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+		if (e.code === "Space" || e.code === "Enter") {
+			setTimeout(function () {
+				firstMenuItem.current?.focus();
+			}, 0);
+		}
+	};
+
+	const menuItems = menuList.map(({ title, href }, index) => (
+		<Link
+			className="nav-link mb-1"
+			to={href}
+			key={href}
+			ref={index === 0 ? firstMenuItem : undefined}
+		>
 			{title}
 		</Link>
 	));
 
 	return (
 		<>
-			<Button variant="dark" className={btnClassName} onClick={toggleOpen()}>
+			<Button
+				variant="dark"
+				className={btnClassName}
+				onClick={toggleOpen()}
+				onKeyDown={onKeyDown}
+			>
 				<span className="menu-icon">
 					<span />
 				</span>
 			</Button>
 
 			<Portal>
-				<div className={overlayClassName} onClick={toggleOpen(false)} />
-
 				<div className={menuClassName}>
 					<MenuUserInfo className="mb-3" />
 					<nav className="d-flex flex-column">{menuItems}</nav>
 				</div>
+
+				<button
+					className={overlayClassName}
+					onClick={toggleOpen(false)}
+					tabIndex={0}
+				/>
 			</Portal>
 		</>
 	);

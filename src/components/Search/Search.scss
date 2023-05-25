@@ -1,0 +1,16 @@
+.search-wrapper {
+	width: 50%;
+}
+
+.search-input-group {
+	position: relative;
+
+	.search-clear.btn {
+		position: absolute;
+		top: 0;
+		right: 4.6875rem;
+		z-index: 6;
+
+		text-decoration: none;
+	}
+}

@@ -1,5 +1,6 @@
-import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { PostsData } from "./types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+import { PostsData, Sort, SortBy } from "./types";
 import { FetchingStatus } from "../../../types/common";
 import { Post } from "../../../types/post";
 
@@ -8,6 +9,9 @@ const initialState: PostsData = {
 	error: null,
 	page: 1,
 	status: FetchingStatus.IDLE,
+	sortBy: SortBy.DEFAULT,
+	order: 1,
+	search: "",
 };
 
 export const postsSlice = createSlice({
@@ -15,7 +19,7 @@ export const postsSlice = createSlice({
 	initialState,
 	reducers: {
 		setPosts(state, action: PayloadAction<Post[]>) {
-			state.entities.push(...action.payload);
+			state.entities = action.payload;
 		},
 		setPostsStatus(state, action: PayloadAction<FetchingStatus>) {
 			state.status = action.payload;
@@ -26,13 +30,27 @@ export const postsSlice = createSlice({
 		setPage(state, action: PayloadAction<number>) {
 			state.page = action.payload;
 		},
+		setSort(state, action: PayloadAction<Sort>) {
+			state.sortBy = action.payload.sortBy;
+			state.order = action.payload.order;
+		},
+		setSearch(state, action: PayloadAction<string>) {
+			state.search = action.payload;
+		},
+		getPosts(state) {
+			return state;
+		},
 	},
 });
 
-export const GET_POSTS_ACTION_TYPE = `${postsSlice.name}/getPosts`;
-export const getPosts = createAction(GET_POSTS_ACTION_TYPE);
-
-export const { setPosts, setPostsError, setPage, setPostsStatus } =
-	postsSlice.actions;
+export const {
+	getPosts,
+	setPosts,
+	setPostsError,
+	setPage,
+	setPostsStatus,
+	setSort,
+	setSearch,
+} = postsSlice.actions;
 
 export default postsSlice;
