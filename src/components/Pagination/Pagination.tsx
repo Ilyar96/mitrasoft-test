@@ -1,17 +1,16 @@
 import { FC } from "react";
 import { PaginationControl } from "react-bootstrap-pagination-control";
+import cn from "classnames";
 
 import { useAppSelector } from "../../redux/store";
 import {
 	selectFilteredPosts,
-	selectPosts,
 	selectPostsPage,
 } from "../../redux/slices/posts/selectors";
 import { useActions } from "../../hooks";
 import { postsPerPage } from "../../constants/constants";
 
 import "./Pagination.scss";
-import cn from "classnames";
 
 export interface PaginationProps {
 	className?: string;

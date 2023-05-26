@@ -26,6 +26,7 @@ export const Home: FC = () => {
 	useEffect(() => {
 		comments.length === 0 && getComments();
 		posts.length === 0 && getPosts();
+		// eslint-disable-next-line
 	}, []);
 
 	return (

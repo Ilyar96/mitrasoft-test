@@ -22,13 +22,11 @@ export const Menu: FC = () => {
 	const overlayClassName = cn("overlay", { open: isOpen });
 	const firstMenuItem = useRef<HTMLAnchorElement>(null);
 
-	const toggleOpen = (value?: boolean) => () => {
-		if (value !== undefined) {
-			setIsOpen(value);
-		} else {
-			setIsOpen((prev) => !prev);
-		}
+	const toggleOpen = () => {
+		setIsOpen((prev) => !prev);
 	};
+
+	const onCloseMenu = () => setIsOpen(false);
 
 	const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
 		if (e.code === "Space" || e.code === "Enter") {
@@ -58,6 +56,7 @@ export const Menu: FC = () => {
 			to={href}
 			key={href}
 			ref={index === 0 ? firstMenuItem : undefined}
+			onClick={onCloseMenu}
 		>
 			{title}
 		</Link>
@@ -68,7 +67,7 @@ export const Menu: FC = () => {
 			<Button
 				variant="dark"
 				className={btnClassName}
-				onClick={toggleOpen()}
+				onClick={toggleOpen}
 				onKeyDown={onKeyDown}
 			>
 				<span className="menu-icon">
@@ -84,7 +83,7 @@ export const Menu: FC = () => {
 
 				<button
 					className={overlayClassName}
-					onClick={toggleOpen(false)}
+					onClick={onCloseMenu}
 					tabIndex={0}
 				/>
 			</Portal>

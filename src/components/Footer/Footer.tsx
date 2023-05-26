@@ -1,8 +1,6 @@
 import { FC } from "react";
 import { Container } from "react-bootstrap";
 
-import { Logo } from "../";
-
 import "./Footer.scss";
 
 interface FooterProps {}

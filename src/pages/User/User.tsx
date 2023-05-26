@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { Button, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 import { useActions } from "../../hooks";
 import { Loader, UserCard } from "../../components";
@@ -31,10 +31,12 @@ export const User: FC = () => {
 	useEffect(() => {
 		comments.length === 0 && getComments();
 		posts.length === 0 && getPosts();
+		// eslint-disable-next-line
 	}, []);
 
 	useEffect(() => {
 		user?.id !== id && getUser(id);
+		// eslint-disable-next-line
 	}, [id]);
 
 	if (status === FetchingStatus.PENDING) {
@@ -50,6 +52,7 @@ export const User: FC = () => {
 			<Link to={AppRoutes.HOME} className="btn btn-primary mb-5">
 				Вернуться ко всем постам
 			</Link>
+
 			{user && <UserCard className="mb-5" {...user} />}
 			<PostList posts={currentUserPosts} />
 		</Container>
