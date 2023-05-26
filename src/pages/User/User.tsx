@@ -1,6 +1,7 @@
 import { FC, useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import { Helmet } from "react-helmet-async";
 
 import { useActions } from "../../hooks";
 import { Loader, UserCard } from "../../components";
@@ -48,13 +49,21 @@ export const User: FC = () => {
 	}
 
 	return (
-		<Container>
-			<Link to={AppRoutes.HOME} className="btn btn-primary mb-5">
-				Вернуться ко всем постам
-			</Link>
+		<>
+			<Helmet>
+				<title>
+					Информация о пользователе {user?.name ? user.name : ""} | Тестовое
+					задание
+				</title>
+			</Helmet>
+			<Container>
+				<Link to={AppRoutes.HOME} className="btn btn-primary mb-5">
+					Вернуться ко всем постам
+				</Link>
 
-			{user && <UserCard className="mb-5" {...user} />}
-			<PostList posts={currentUserPosts} />
-		</Container>
+				{user && <UserCard className="mb-5" {...user} />}
+				<PostList posts={currentUserPosts} />
+			</Container>
+		</>
 	);
 };

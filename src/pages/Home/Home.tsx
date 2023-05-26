@@ -1,5 +1,6 @@
 import { FC, useEffect } from "react";
 import { Container } from "react-bootstrap";
+import { Helmet } from "react-helmet-async";
 
 import { useActions } from "../../hooks";
 import {
@@ -11,9 +12,9 @@ import {
 import { Loader, Pagination, PostFilters, PostList } from "../../components";
 import { FetchingStatus } from "../../types/common";
 import { useAppSelector } from "../../redux/store";
+import { selectComments } from "../../redux/slices/comments/selectors";
 
 import "./Home.scss";
-import { selectComments } from "../../redux/slices/comments/selectors";
 
 export const Home: FC = () => {
 	const { getComments, getPosts } = useActions();
@@ -30,21 +31,27 @@ export const Home: FC = () => {
 	}, []);
 
 	return (
-		<Container className="home-container d-flex flex-column">
-			{status === FetchingStatus.PENDING && <Loader />}
+		<>
+			<Helmet>
+				<title>Главная | Тестовое задание</title>
+			</Helmet>
 
-			{status === FetchingStatus.SUCCESS && (
-				<>
-					<PostFilters />
-					<h1 className="h2 mb-4">Список постов:</h1>
-					<PostList posts={paginatedPosts} />
-					<Pagination className="mt-5" />
-				</>
-			)}
+			<Container className="home-container d-flex flex-column">
+				{status === FetchingStatus.PENDING && <Loader />}
 
-			{status === FetchingStatus.FAILURE && (
-				<h1 className="h2 mb-4">{error}</h1>
-			)}
-		</Container>
+				{status === FetchingStatus.SUCCESS && (
+					<>
+						<PostFilters />
+						<h1 className="h2 mb-4">Список постов:</h1>
+						<PostList posts={paginatedPosts} />
+						<Pagination className="mt-5" />
+					</>
+				)}
+
+				{status === FetchingStatus.FAILURE && (
+					<h1 className="h2 mb-4">{error}</h1>
+				)}
+			</Container>
+		</>
 	);
 };
