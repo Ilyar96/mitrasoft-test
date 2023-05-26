@@ -12,11 +12,12 @@ export interface SearchProps {
 
 export const Search: FC<SearchProps> = ({ className }) => {
 	const [searchValue, setSearchValue] = useState("");
-	const { setSearch } = useActions();
+	const { setSearch, setPage } = useActions();
 
 	const onSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setSearch(searchValue);
+		setPage(1);
 	};
 
 	const onChange = (e: ChangeEvent<HTMLInputElement>) => {
