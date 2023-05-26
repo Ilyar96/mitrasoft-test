@@ -11,6 +11,7 @@ import { useActions } from "../../hooks";
 import { postsPerPage } from "../../constants/constants";
 
 import "./Pagination.scss";
+import cn from "classnames";
 
 export interface PaginationProps {
 	className?: string;
@@ -22,10 +23,10 @@ export const Pagination: FC<PaginationProps> = ({ className }) => {
 	const { setPage } = useActions();
 
 	return (
-		<div className={className}>
+		<div className={cn(className, "d-flex justify-content-center")}>
 			<PaginationControl
 				page={page}
-				between={4}
+				between={2}
 				total={posts.length}
 				limit={postsPerPage}
 				changePage={(page) => {

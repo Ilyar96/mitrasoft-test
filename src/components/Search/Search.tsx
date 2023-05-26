@@ -1,11 +1,16 @@
 import { ChangeEvent, FC, FormEvent, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
+import cn from "classnames";
 
 import { useActions } from "../../hooks";
 
 import "./Search.scss";
 
-export const Search: FC = () => {
+export interface SearchProps {
+	className?: string;
+}
+
+export const Search: FC<SearchProps> = ({ className }) => {
 	const [searchValue, setSearchValue] = useState("");
 	const { setSearch } = useActions();
 
@@ -24,7 +29,7 @@ export const Search: FC = () => {
 	};
 
 	return (
-		<Form className="search-wrapper" onSubmit={onSubmit}>
+		<Form className={cn("search-wrapper", className)} onSubmit={onSubmit}>
 			<InputGroup className="search-input-group">
 				<Form.Control
 					className="pe-5"

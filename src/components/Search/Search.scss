@@ -1,5 +1,9 @@
 .search-wrapper {
-	width: 50%;
+	width: 100%;
+
+	@media (min-width: 767.98px) {
+		width: 50%;
+	}
 }
 
 .search-input-group {
